@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Germany Travel Assistant</title>
+    <title>Mzansi Changes Travel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -20,6 +20,7 @@
             padding: 20px;
             position: relative;
             overflow-x: hidden;
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 105, 180, 0.05) 10px, rgba(255, 105, 180, 0.05) 20px);
         }
         
         body::before {
@@ -29,7 +30,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at top right, rgba(100, 255, 218, 0.1) 0%, transparent 40%);
+            background: radial-gradient(circle at top right, rgba(255, 105, 180, 0.1) 0%, transparent 40%);
             pointer-events: none;
         }
         
@@ -38,6 +39,9 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            border: 2px dashed rgba(255, 105, 180, 0.5);
+            padding: 25px;
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.1);
         }
         
         header {
@@ -49,32 +53,37 @@
         .logo {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #64ffda 0%, #00bcd4 100%);
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
             border-radius: 50%;
             margin: 0 auto 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 20px rgba(100, 255, 218, 0.3);
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+            border: 2px solid rgba(255, 105, 180, 0.3);
         }
         
         .logo i {
             font-size: 36px;
             color: #121212;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
         }
         
         h1 {
             font-size: 32px;
             margin-bottom: 5px;
-            background: linear-gradient(to right, #64ffda, #00bcd4);
+            background: linear-gradient(to right, #ff69b4, #ff1493);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
+            letter-spacing: 1px;
         }
         
         .subtitle {
-            color: #b0b0b0;
+            color: #ff69b4;
             font-size: 14px;
             margin-bottom: 20px;
+            font-weight: 500;
         }
         
         .status-bar {
@@ -87,7 +96,7 @@
             margin-bottom: 25px;
             font-size: 14px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(100, 255, 218, 0.1);
+            border: 2px dashed rgba(255, 105, 180, 0.5);
         }
         
         .status-item {
@@ -99,11 +108,14 @@
             color: #888;
             font-size: 12px;
             margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .status-value {
             font-weight: bold;
-            color: #64ffda;
+            color: #ff69b4;
+            text-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
         }
         
         .card {
@@ -113,7 +125,13 @@
             padding: 20px;
             margin-bottom: 25px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(100, 255, 218, 0.1);
+            border: 2px dashed rgba(255, 105, 180, 0.5);
+            transition: all 0.4s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15);
         }
         
         .card-title {
@@ -121,12 +139,15 @@
             margin-bottom: 20px;
             display: flex;
             align-items: center;
-            color: #64ffda;
+            color: #ff69b4;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
         }
         
         .card-title i {
             margin-right: 10px;
             font-size: 20px;
+            color: #ff69b4;
+            text-shadow: 0 0 8px rgba(255, 105, 180, 0.7);
         }
         
         .app-grid {
@@ -142,9 +163,10 @@
             text-align: center;
             transition: all 0.3s ease;
             cursor: pointer;
-            border: 1px solid rgba(100, 255, 218, 0.05);
+            border: 1px solid rgba(255, 105, 180, 0.05);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         
         .app-item::before {
@@ -154,15 +176,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(100, 255, 218, 0.1) 0%, transparent 100%);
+            background: linear-gradient(to bottom, rgba(255, 105, 180, 0.1) 0%, transparent 100%);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
         
         .app-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
-            border-color: rgba(100, 255, 218, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.2);
+            border-color: rgba(255, 105, 180, 0.3);
         }
         
         .app-item:hover::before {
@@ -172,17 +194,22 @@
         .app-icon {
             font-size: 28px;
             margin-bottom: 10px;
-            color: #64ffda;
-            transition: transform 0.3s ease;
+            color: #ff69b4;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
         }
         
         .app-item:hover .app-icon {
-            transform: scale(1.2);
+            transform: scale(1.3) rotate(5deg);
+            text-shadow: 0 0 15px rgba(255, 105, 180, 0.8);
         }
         
         .app-name {
             font-size: 12px;
             color: #e0e0e0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
         }
         
         .quick-actions {
@@ -193,8 +220,8 @@
         
         .action-btn {
             background: rgba(30, 30, 30, 0.8);
-            border: 1px solid rgba(100, 255, 218, 0.1);
-            color: #64ffda;
+            border: 1px solid rgba(255, 105, 180, 0.1);
+            color: #ff69b4;
             padding: 10px 15px;
             border-radius: 12px;
             font-size: 14px;
@@ -202,27 +229,35 @@
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         
         .action-btn i {
             margin-right: 5px;
+            color: #ff69b4;
         }
         
         .action-btn:hover {
-            background: rgba(100, 255, 218, 0.1);
+            background: rgba(255, 105, 180, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 105, 180, 0.2);
+            border-color: rgba(255, 105, 180, 0.3);
         }
         
         footer {
             text-align: center;
             margin-top: 40px;
-            color: #666;
+            color: #ff69b4;
             font-size: 12px;
+            text-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
         }
         
         .time-display {
             font-size: 14px;
-            color: #64ffda;
+            color: #ff69b4;
             margin-top: 5px;
+            text-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
+            font-weight: 500;
         }
         
         @media (max-width: 400px) {
@@ -240,6 +275,22 @@
                 justify-content: center;
             }
         }
+        
+        /* Digital effects */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 105, 180, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 105, 180, 0); }
+        }
+        
+        .card, .app-item, .action-btn {
+            animation: pulse 3s infinite;
+        }
+        
+        .container {
+            border: 2px dashed rgba(255, 105, 180, 0.5);
+            animation: pulse 4s infinite;
+        }
     </style>
 </head>
 <body>
@@ -248,13 +299,13 @@
             <div class="logo">
                 <i class="fas fa-plane"></i>
             </div>
-            <h1>Germany Travel Assistant</h1>
-            <p class="subtitle">Your companion for traveling in Germany</p>
+            <h1>Mzansi Changes Travel</h1>
+            <p class="subtitle">Designed for Bridgette, Thando, and Nokuthula</p>
         </header>
         
         <div class="status-bar">
             <div class="status-item">
-                <div class="status-label">Current Location</div>
+                <div class="status-label">Destiny Location</div>
                 <div class="status-value">Kassel, Germany</div>
             </div>
             <div class="status-item">
@@ -357,15 +408,15 @@
         
         <div class="quick-actions">
             <button class="action-btn" onclick="openApp('emergency')">
-                <i class="fas fa-phone-alt"></i> Emergency Contacts
+                <i class="fas fa-phone-alt"></i> Access Phone
             </button>
             <button class="action-btn" onclick="openApp('notes')">
-                <i class="fas fa-sticky-note"></i> Travel Notes
+                <i class="fas fa-sticky-note"></i> Google Docs
             </button>
         </div>
         
         <footer>
-            <p>Germany Travel Assistant • Designed for South Africans traveling in Germany</p>
+            <p>Mzansi Changes Travel • Designed for Bridgette, Thando, and Nokuthula</p>
             <div class="time-display" id="sa-time">South Africa: <span id="sa-time-value">00:00</span></div>
         </footer>
     </div>
@@ -469,3 +520,4 @@
     </script>
 </body>
 </html>
+The design now has a modern digital aesthetic with pink accents throughout, creating a vibrant and futuristic travel assistant interface that's specifically tailored for the named individuals.
