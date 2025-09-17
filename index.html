@@ -262,6 +262,51 @@
             font-weight: 500;
         }
         
+        /* New Motivation Card Styles */
+        .motivation-card {
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border: 2px dashed rgba(255, 105, 180, 0.5);
+            text-align: center;
+        }
+        
+        .motivation-text {
+            font-size: 24px;
+            color: #ff69b4;
+            text-shadow: 
+                0 0 5px #ff69b4,
+                0 0 10px #ff69b4,
+                0 0 15px #ff69b4,
+                0 0 20px #ff1493,
+                0 0 30px #ff1493;
+            animation: glow 2s ease-in-out infinite alternate;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 
+                    0 0 5px #ff69b4,
+                    0 0 10px #ff69b4,
+                    0 0 15px #ff69b4,
+                    0 0 20px #ff1493,
+                    0 0 30px #ff1493;
+            }
+            to {
+                text-shadow: 
+                    0 0 10px #ff69b4,
+                    0 0 20px #ff69b4,
+                    0 0 30px #ff69b4,
+                    0 0 40px #ff1493,
+                    0 0 50px #ff1493;
+            }
+        }
+        
         @media (max-width: 400px) {
             .app-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -320,7 +365,7 @@
                 <i class="fas fa-plane"></i>
             </div>
             <h1>Mzansi Changes Travel</h1>
-            <p class="subtitle">Stay motivated y'all</p>
+            <p class="subtitle">Designed for Bridgette, Thando, and Nokuthula</p>
         </header>
         
         <div class="status-bar">
@@ -420,6 +465,14 @@
                     <div class="app-name">Airalo</div>
                 </div>
             </div>
+        </div>
+        
+        <!-- New Motivation Card -->
+        <div class="motivation-card">
+            <div class="card-title">
+                <i class="fas fa-heart"></i> Motivation
+            </div>
+            <div class="motivation-text">Stay motivated y'all</div>
         </div>
         
         <div class="quick-actions">
@@ -583,3 +636,5 @@
     </script>
 </body>
 </html>
+
+This addition creates a nice motivational touch to your travel assistant app!
