@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Assistant</title>
+    <title>Germany Travel Assistant</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -248,14 +248,14 @@
             <div class="logo">
                 <i class="fas fa-plane"></i>
             </div>
-            <h1>Travel Assistant</h1>
-            <p class="subtitle">Your all-in-one travel companion</p>
+            <h1>Germany Travel Assistant</h1>
+            <p class="subtitle">Your companion for traveling in Germany</p>
         </header>
         
         <div class="status-bar">
             <div class="status-item">
                 <div class="status-label">Current Location</div>
-                <div class="status-value">Germany</div>
+                <div class="status-value">Kassel, Germany</div>
             </div>
             <div class="status-item">
                 <div class="status-label">Home Country</div>
@@ -312,15 +312,15 @@
                 <i class="fas fa-globe"></i> Travel Info
             </div>
             <div class="app-grid">
-                <div class="app-item" onclick="openApp('weather')">
+                <div class="app-item" onclick="openWebsite('https://www.accuweather.com/en/de/kassel/34117/weather-forecast/168717')">
                     <div class="app-icon"><i class="fas fa-cloud-sun"></i></div>
                     <div class="app-name">Weather</div>
                 </div>
-                <div class="app-item" onclick="openApp('timezone')">
+                <div class="app-item" onclick="openWebsite('https://24timezones.com/current_time/germany_kassel_clock.php')">
                     <div class="app-icon"><i class="fas fa-clock"></i></div>
                     <div class="app-name">Time Zones</div>
                 </div>
-                <div class="app-item" onclick="openApp('currency')">
+                <div class="app-item" onclick="openWebsite('https://www.xe.com/en-us/currencyconverter/convert/?Amount=1&From=EUR&To=ZAR')">
                     <div class="app-icon"><i class="fas fa-money-bill-wave"></i></div>
                     <div class="app-name">XE Currency</div>
                 </div>
@@ -332,7 +332,7 @@
                 <i class="fas fa-suitcase"></i> Travel Planning
             </div>
             <div class="app-grid">
-                <div class="app-item" onclick="openApp('tripit')">
+                <div class="app-item" onclick="openWebsite('https://www.tripit.com/web')">
                     <div class="app-icon"><i class="fas fa-ticket-alt"></i></div>
                     <div class="app-name">TripIt</div>
                 </div>
@@ -357,7 +357,7 @@
         </div>
         
         <footer>
-            <p>Travel Assistant App • Designed for your needs between SA and Germany</p>
+            <p>Germany Travel Assistant • Designed for South Africans traveling in Germany</p>
             <div class="time-display" id="sa-time">South Africa: <span id="sa-time-value">00:00</span></div>
         </footer>
     </div>
@@ -372,9 +372,6 @@
                 maps: 'googlemaps://',
                 waze: 'waze://',
                 rome2rio: 'rome2rio://',
-                weather: 'https://weather.com',
-                timezone: 'https://time.is',
-                currency: 'https://xe.com',
                 tripit: 'tripit://',
                 hotels: 'https://booking.com',
                 flights: 'https://google.com/flights',
@@ -398,7 +395,7 @@
                         maps: 'https://maps.google.com',
                         waze: 'https://www.waze.com',
                         rome2rio: 'https://www.rome2rio.com',
-                        tripit: 'https://www.tripit.com'
+                        tripit: 'https://www.tripit.com/web'
                     };
                     
                     if (webFallbacks[app]) {
@@ -406,6 +403,11 @@
                     }
                 }
             }, 500);
+        }
+        
+        // Direct website opening without app attempt
+        function openWebsite(url) {
+            window.open(url, '_blank');
         }
         
         // Update time displays
@@ -452,5 +454,3 @@
     </script>
 </body>
 </html>
-
-
