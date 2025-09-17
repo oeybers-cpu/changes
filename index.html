@@ -1,3 +1,6 @@
+Here's the complete revised code with all requested changes implemented, including the "Add to Home Screen" functionality:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mzansi Changes Travel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ff69b4">
     <style>
         * {
             margin: 0;
@@ -291,6 +296,24 @@
             border: 2px dashed rgba(255, 105, 180, 0.5);
             animation: pulse 4s infinite;
         }
+        
+        /* Install prompt */
+        .install-prompt {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 105, 180, 0.9);
+            color: #121212;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: none;
+            animation: pulse 2s infinite;
+        }
     </style>
 </head>
 <body>
@@ -420,6 +443,11 @@
             <div class="time-display" id="sa-time">South Africa: <span id="sa-time-value">00:00</span></div>
         </footer>
     </div>
+    
+    <!-- Install prompt -->
+    <div class="install-prompt" id="installPrompt">
+        Tap to add Mzansi Changes Travel to your home screen
+    </div>
 
     <script>
         // App opening functionality
@@ -517,7 +545,122 @@
                 }, 100 + (index * 100));
             });
         });
+        
+        // PWA installation code
+        let deferredPrompt;
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the browser from showing the default prompt
+            e.preventDefault();
+            // Store the event so it can be triggered later
+            deferredPrompt = e;
+            // Show your custom install prompt
+            document.getElementById('installPrompt').style.display = 'block';
+        });
+        
+        document.getElementById('installPrompt').addEventListener('click', () => {
+            if (deferredPrompt) {
+                // Show the install prompt
+                deferredPrompt.prompt();
+                // Wait for the user to respond to the prompt
+                deferredPrompt.userChoice
+                    .then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('User accepted the install prompt');
+                        } else {
+                            console.log('User dismissed the install prompt');
+                        }
+                        deferredPrompt = null;
+                    });
+            }
+            // Hide the install prompt after it's been triggered
+            document.getElementById('installPrompt').style.display = 'none';
+        });
+        
+        // Service worker registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
     </script>
 </body>
 </html>
-The design now has a modern digital aesthetic with pink accents throughout, creating a vibrant and futuristic travel assistant interface that's specifically tailored for the named individuals.
+```
+
+## Important Notes:
+
+1. This code includes all the requested changes:
+   - Changed "Germany Travel Assistant" to "Mzansi Changes Travel"
+   - Changed subtitle to "Designed for Bridgette, Thando, and Nokuthula"
+   - Changed "Current Location" to "Destiny Location"
+   - Changed "Emergency Contacts" to "Access Phone"
+   - Changed "Travel Notes" to "Google Docs"
+   - Added pink accents throughout the design with dashed borders, glow effects, and pulse animations
+
+2. For the "Add to Home Screen" functionality to work properly:
+   - You'll need to create a `manifest.json` file in the same directory
+   - You'll need to create a `sw.js` service worker file
+   - The site must be served over HTTPS (except for localhost during development)
+
+3. Here's a basic `manifest.json` file you can create:
+
+```json
+{
+  "name": "Mzansi Changes Travel",
+  "short_name": "Mzansi Travel",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0c0c0c",
+  "theme_color": "#ff69b4",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+```
+
+4. And a basic `sw.js` service worker file:
+
+```javascript
+// sw.js
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open('mzansi-travel-cache').then(cache => {
+      return cache.addAll([
+        '/',
+        '/index.html',
+        '/styles.css',
+        '/icon-192.png',
+        '/icon-512.png'
+      ]);
+    })
+  );
+});
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
+  );
+});
+```
+
+5. For the icons, you'll need to create or download 192x192 and 512x512 PNG icons for your app.
+
+With these files in place, your app will be a fully functional PWA that can be added to home screens on compatible devices.
