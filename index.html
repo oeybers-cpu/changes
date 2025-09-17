@@ -304,6 +304,10 @@
                     <div class="app-icon"><i class="fas fa-route"></i></div>
                     <div class="app-name">Rome2Rio</div>
                 </div>
+                <div class="app-item" onclick="openApp('lens')">
+                    <div class="app-icon"><i class="fas fa-camera"></i></div>
+                    <div class="app-name">Google Lens</div>
+                </div>
             </div>
         </div>
         
@@ -332,7 +336,7 @@
                 <i class="fas fa-suitcase"></i> Travel Planning
             </div>
             <div class="app-grid">
-                <div class="app-item" onclick="openWebsite('https://www.tripit.com/web')">
+                <div class="app-item" onclick="openApp('tripit')">
                     <div class="app-icon"><i class="fas fa-ticket-alt"></i></div>
                     <div class="app-name">TripIt</div>
                 </div>
@@ -343,6 +347,10 @@
                 <div class="app-item" onclick="openApp('flights')">
                     <div class="app-icon"><i class="fas fa-plane-departure"></i></div>
                     <div class="app-name">Flights</div>
+                </div>
+                <div class="app-item" onclick="openApp('airalo')">
+                    <div class="app-icon"><i class="fas fa-sim-card"></i></div>
+                    <div class="app-name">Airalo</div>
                 </div>
             </div>
         </div>
@@ -376,31 +384,38 @@
                 hotels: 'https://booking.com',
                 flights: 'https://google.com/flights',
                 emergency: 'tel:112',
-                notes: 'https://docs.google.com'
+                notes: 'https://docs.google.com',
+                lens: 'https://lens.google/#cta-section',
+                airalo: 'https://www.airalo.com/'
             };
             
+            const url = appUrls[app];
+            
+            // If it's a web URL, open in new tab
+            if (url.startsWith('http')) {
+                window.open(url, '_blank');
+                return;
+            }
+            
             // Try to open the app directly
-            window.location.href = appUrls[app];
+            window.location.href = url;
             
             // Fallback to website if app isn't installed
             setTimeout(function() {
-                if (app.startsWith('http')) {
-                    window.open(appUrls[app], '_blank');
-                } else {
-                    // For apps that might not have direct deep links
-                    const webFallbacks = {
-                        gmail: 'https://mail.google.com',
-                        whatsapp: 'https://web.whatsapp.com',
-                        translate: 'https://translate.google.com',
-                        maps: 'https://maps.google.com',
-                        waze: 'https://www.waze.com',
-                        rome2rio: 'https://www.rome2rio.com',
-                        tripit: 'https://www.tripit.com/web'
-                    };
-                    
-                    if (webFallbacks[app]) {
-                        window.open(webFallbacks[app], '_blank');
-                    }
+                const webFallbacks = {
+                    gmail: 'https://mail.google.com',
+                    whatsapp: 'https://web.whatsapp.com',
+                    translate: 'https://translate.google.com',
+                    maps: 'https://maps.google.com',
+                    waze: 'https://www.waze.com',
+                    rome2rio: 'https://www.rome2rio.com',
+                    tripit: 'https://www.tripit.com/web',
+                    hotels: 'https://booking.com',
+                    flights: 'https://google.com/flights'
+                };
+                
+                if (webFallbacks[app]) {
+                    window.open(webFallbacks[app], '_blank');
                 }
             }, 500);
         }
